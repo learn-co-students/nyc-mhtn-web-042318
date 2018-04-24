@@ -20,15 +20,43 @@ def get_genre
   gets.chomp
 end
 
+def make_request(genre)
+  response = RestClient.get "https://www.googleapis.com/books/v1/volumes?q=#{genre}"
+  JSON.parse(response.body)
+end
+
+def get_books(genre)
+  book_hash = make_request(genre)
+  book_hash["items"]
+end
+
+def print_books(books)
+  books.each do |book|
+    print_book_info(book["volumeInfo"])
+  end
+end
+
+def print_book_info(bookInfo)
+  puts "Title: #{bookInfo["title"]}"
+  puts "Authors: #{author_string(bookInfo["authors"])}"
+  puts "Description: #{bookInfo["description"]}"
+  puts "\n"
+end
+
+def author_string(authors)
+  if authors
+    authors.join(",")
+  else
+    ""
+  end
+end
+
+
 def run
   welcome
   genre = get_genre
-  response = RestClient.get "https://www.googleapis.com/books/v1/volumes?q=#{genre}"
-  book_hash = JSON.parse(response.body)
-
-  books = book_hash["items"]
-
-  binding.pry
+  books = get_books(genre)
+  print_books(books)
 end
 
 run
