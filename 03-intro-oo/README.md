@@ -185,6 +185,9 @@ name.send(:split).send(:[], 0)
 # so how else can we do this?
 name.send(:split).[](0)
 # now that is some crazy cool stuff!
+# ruby gives you a lot of syntactic sugar to make code read easier
+# this is one example of that syntactic sugar
+# keep it in mind as it will pop up again later
 
 # but what do objects do when you try to use a method it doesn't understand?
 age.split
@@ -214,6 +217,7 @@ puts alice.class
 puts alice[:name]
 puts alice[:name].split
 
+# look! more syntactic sugar but for hashes!
 puts alice.send(:[], :name)
 
 # and now we can make variables for all the humans in the class
@@ -479,8 +483,13 @@ class Human
 
   # instance method
   def birthday!
+    # what is self here?
+    # are these two statements the same?
+    # are the two selfs the same?
     # self.age = self.age + 1
     @age = @age + 1
+    # if you don't see it yet, we'll get back to it
+    # just let it stew in the back of your mind
   end
 end
 
@@ -490,7 +499,57 @@ puts alice.age
 # instance methods are something an instance of a class can do
 # the class itself, an object, cannot do this
 Human.birthday!
+```
 
+**An Aside** - _Syntactic Sugar!_
+
+```ruby
+# lets look back at our old example and use getters and setters again
+class Human
+  attr_accessor :name, :loves_cats
+
+  def initialize(name, age, loves_cats)
+    @name = name
+    @age = age
+    @loves_cats = loves_cats
+  end
+
+  def birthday!
+    @age = @age + 1
+  end
+
+  def self_birthday!
+    self.age = self.age + 1
+  end
+
+  def age=(age)
+    puts "setter"
+    @age = age
+  end
+
+  def age
+    puts "getter"
+    @age
+  end
+end
+
+alice = Human.new('alice awesome', 22, true)
+alice.birthday!
+alice.self_birthday!
+# what do you see printed out?
+# why?
+
+# syntactic sugar!
+alice.age += 1
+alice.age = alice.age + 1
+alice.age=(alice.age + 1)
+alice.send(:age=, alice.age + 1)
+alice.send(:age=, alice.send(:age) + 1)
+```
+
+_Back to playing with instance methods and looking at self & scope._
+
+```ruby
 # but just having a birthday is a bit boring
 # we gotta celebrate!
 class Human
@@ -503,13 +562,13 @@ class Human
     @loves_cats = loves_cats
   end
 
-  # instance method
   def birthday!
-    # self.age = self.age + 1
     @age = @age + 1
   end
 
+  # another instance method
   def celebrate_birthday(place)
+    # any difference here?
     # self.birthday!
     birthday!
     puts "#{@name} parties hard at #{place} and turns #{@age}!"
