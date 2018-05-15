@@ -1,0 +1,16 @@
+<h1>Edit Coffee</h1>
+<a href="/coffees/<%= @coffee.id %>">Cancel</a>
+
+<form action="/coffees/<%= @coffee.id %>" method="post">
+  <input type="hidden" name="_method" value="patch" />
+  <label for="origin">Origin:</label>
+  <input id="origin" type="text" name="coffee[origin]" value="<%= @coffee.origin %>" />
+  <label for="price">Price:</label>
+  <input id="price" type="text" name="coffee[price]" value="<%= @coffee.price %>" />
+  <input type="submit" value="Edit Coffee" />
+</form>
+
+<form action="/coffees/<%= @coffee.id %>" method="post">
+  <input type="hidden" name="_method" value="delete" />
+  <input type="submit" value="Delete Coffee" />
+</form>

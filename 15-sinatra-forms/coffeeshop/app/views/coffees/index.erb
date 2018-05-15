@@ -1,0 +1,10 @@
+<h1>COFFEES</h1>
+
+<a href="/coffees/new">New Coffee</a>
+<br />
+<br />
+<ul>
+  <% @coffees.each do |coffee| %>
+    <li><a href="/coffees/<%= coffee.id%>"><%= coffee.origin %></a> | $<%= coffee.price %></li>
+  <% end %>
+</ul>
