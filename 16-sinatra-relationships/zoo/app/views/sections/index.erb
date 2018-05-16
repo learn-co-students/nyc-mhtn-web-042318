@@ -1,0 +1,7 @@
+<h1>All Sections</h1>
+<a href="/sections/new">New Section</a><br /><br />
+<ul>
+  <% @sections.each do |section| %>
+    <li><a href="/sections/<%= section.id %>"><%= section.name %></a></li>
+  <% end  %>
+</ul>

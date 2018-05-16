@@ -1,0 +1,10 @@
+<h1><%= @section.name %></h1>
+<h3>Animals that reside here:</h3>
+<ul>
+  <% @section.animals.each do |animal| %>
+    <li><a href="/animals/<%= animal.id %>"><%= animal.name %></a></li>
+  <% end %>
+</ul>
+
+<a href="/sections">All Sections</a>
+<a href="/sections/<%= @section.id %>/edit">Edit Section</a>

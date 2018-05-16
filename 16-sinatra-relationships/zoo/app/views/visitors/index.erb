@@ -1,0 +1,8 @@
+<h1>All Visitors</h1>
+<a href="/visitors/new">New Visitor</a><br /><br />
+
+<ul>
+  <% @visitors.each do |visitor| %>
+    <li><a href="/visitors/<%= visitor.id %>"><%= visitor.name %></a></li>
+  <% end  %>
+</ul>

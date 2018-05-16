@@ -1,0 +1,13 @@
+<h1>Edit Section</h1>
+<a href="/sections/<%= @section.id %>">Cancel</a>
+<form action="/sections/<%= @section.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label for="name">Name:</label>
+  <input type="text" name="section[name]" value="<%= @section.name %>" />
+  <input type="submit" value="Edit Section" />
+</form>
+
+<form action="/sections/<%= @section.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Section" />
+</form>

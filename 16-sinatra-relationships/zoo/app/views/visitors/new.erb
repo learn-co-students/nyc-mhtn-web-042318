@@ -1,0 +1,16 @@
+<h1>New Visitor</h1>
+<a href="/visitors">Cancel</a>
+
+<form action="/visitors" method="post">
+  <label for="name">Name:</label>
+  <input type="text" name="visitor[name]" />
+
+  <% @animals.each do |animal| %>
+    <div>
+      <input type="checkbox" id="animal-<%= animal.id %>" name="visitor[animal_ids][]" value="<%= animal.id %>">
+      <label for="animal-<%= animal.id %>"><%= animal.name %></label>
+    </div>
+  <% end %>
+
+  <input type="submit" value="Add New Visitor" />
+</form>

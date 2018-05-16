@@ -1,0 +1,15 @@
+<h1><%= @visitor.name %></h1>
+
+
+<% if @visitor.animals.length > 0 %>
+  <h3>Favorite Animals</h3>
+  <ul>
+    <% @visitor.animals.each do |animal| %>
+      <li><a href="/animals/<%= animal.id %>"><%= animal.name %></a></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+<a href="/visitors">All Visitors</a>
+<a href="/visitors/<%= @visitor.id %>/edit">Edit Visitor</a>

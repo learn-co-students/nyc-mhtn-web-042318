@@ -1,0 +1,14 @@
+<h1><%= @animal.name %></h1>
+<p>Belongs in the <a href="/sections/<%= @animal.section.id %>"><%= @animal.section.name %></a>.</p>
+
+<% if @animal.visitors.length > 0 %>
+  <h3>Liked by:</h3>
+  <ul>
+    <% @animal.visitors.each do |visitor| %>
+      <li><a href="/visitors/<%= visitor.id %>"><%= visitor.name %></a></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<a href="/animals">All Animals</a>
+<a href="/animals/<%= @animal.id %>/edit">Edit Animal</a>

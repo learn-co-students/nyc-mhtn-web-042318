@@ -1,0 +1,16 @@
+<h1>New Animal</h1>
+<a href="/animals">Cancel</a>
+
+<form action="/animals" method="post">
+  <label for="name">Name:</label>
+  <input type="text" name="animal[name]" />
+
+  <select name="animal[section_id]">
+    <% @sections.each do |section| %>
+      <option value="<%= section.id %>"><%= section.name %></option>
+    <% end %>
+  </select>
+
+
+  <input type="submit" value="Add New Animal" />
+</form>

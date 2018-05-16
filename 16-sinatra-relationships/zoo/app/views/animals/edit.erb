@@ -1,0 +1,28 @@
+<h1>Edit Animal</h1>
+<a href="/animals/<%= @animal.id %>">Cancel</a>
+
+<form action="/animals/<%= @animal.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label for="name">Name:</label>
+  <input type="text" name="animal[name]" value="<%= @animal.name %>" />
+
+  <select name="animal[section_id]">
+    <% @sections.each do |section| %>
+      <option value="<%= section.id %>"
+        <% if @animal.section == section %>
+          selected
+        <% end %>
+      >
+        <%= section.name %>
+      </option>
+    <% end %>
+  </select>
+
+
+  <input type="submit" value="Edit Animal" />
+</form>
+
+<form action="/animals/<%= @animal.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Animal" />
+</form>

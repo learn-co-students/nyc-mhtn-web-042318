@@ -1,0 +1,26 @@
+<h1>Edit Visitor</h1>
+<a href="/visitors/<%= @visitor.id %>">Cancel</a>
+
+<form action="/visitors/<%= @visitor.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label for="name">Name:</label>
+  <input type="text" name="visitor[name]" value="<%= @visitor.name %>" />
+
+  <% @animals.each do |animal| %>
+    <div>
+      <input type="checkbox" id="animal-<%= animal.id %>" name="visitor[animal_ids][]" value="<%= animal.id %>"
+        <% if @visitor.animal_ids.include?(animal.id) %>
+          checked
+        <% end %>
+      >
+      <label for="animal-<%= animal.id %>"><%= animal.name %></label>
+    </div>
+  <% end %>
+
+  <input type="submit" value="Edit Visitor" />
+</form>
+
+<form action="/visitors/<%= @visitor.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Visitor" />
+</form>
