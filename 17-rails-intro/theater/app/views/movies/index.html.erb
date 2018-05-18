@@ -1,0 +1,7 @@
+<h1>Now Playing:</h1>
+
+<ul>
+  <% @movies.each do |movie| %>
+    <li><%= link_to movie.title, movie %> | $<%= movie.ticket_price %></li>
+  <% end %>
+</ul>
