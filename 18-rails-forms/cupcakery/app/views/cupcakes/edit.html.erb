@@ -1,0 +1,8 @@
+<h1>Edit Cupcake</h1>
+
+<%= link_to "Cancel", @cupcake %>
+<%= render "form" %>
+
+<%= form_tag cupcake_path(@cupcake), method: :delete do %>
+  <%= submit_tag "Delete Cupcake" %>
+<% end %>

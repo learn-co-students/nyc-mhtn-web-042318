@@ -1,0 +1,15 @@
+<% if flash[:errors] %>
+  <ul>
+    <% flash[:errors].each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @cupcake do |f| %>
+  <%= f.label :flavor, "Flava" %>
+  <%= f.text_field :flavor %>
+  <%= f.label :price %>
+  <%= f.number_field :price %>
+  <%= f.submit %>
+<% end %>
