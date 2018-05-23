@@ -1,0 +1,9 @@
+<%= render "errors/flash_errors" %>
+
+<%= form_for @special do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :price %>
+  <%= f.number_field :price %>
+  <%= f.submit %>
+<% end %>

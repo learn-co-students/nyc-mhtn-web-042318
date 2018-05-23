@@ -1,0 +1,11 @@
+<h1>ALL TACO BELL SPECIALS</h1>
+<%= link_to "Employees", employees_path %>
+<%= link_to "Franchises", franchises_path %>
+
+<img src="https://images.huffingtonpost.com/2012-09-17-AmCrunchwrap_BaconEggWrap_C.jpg" width=300px />
+<%= link_to "New Special", new_special_path %>
+<ul>
+  <% @specials.each do |s| %>
+    <li><%= link_to s.name, s %> | $<%= s.price %></li>
+  <% end %>
+</ul>

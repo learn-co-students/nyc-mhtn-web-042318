@@ -1,0 +1,8 @@
+<h1>Edit Special</h1>
+<%= link_to "Cancel", special_path(@special) %>
+
+<%= render "form" %>
+
+<%= form_tag special_path(@special), method: :delete do %>
+  <%= submit_tag "Delete Special" %>
+<% end %>

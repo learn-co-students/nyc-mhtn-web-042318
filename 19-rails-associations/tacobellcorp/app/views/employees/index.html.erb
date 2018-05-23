@@ -1,0 +1,11 @@
+<h1>ALL TACO BELL EMPLOYEES</h1>
+<%= link_to "Franchises", franchises_path %>
+<%= link_to "Specials", specials_path %>
+
+<img src="https://fm.cnbc.com/applications/cnbc.com/resources/img/editorial/2013/06/03/100785556-taco-bell.530x298.jpg?v=1370284575" width=300px  />
+<%= link_to "New Employee", new_employee_path %>
+<ul>
+  <% @employees.each do |e| %>
+    <li><%= link_to e.name, e %></li>
+  <% end %>
+</ul>

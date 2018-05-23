@@ -1,0 +1,6 @@
+<h1><%= @special.name %></h1>
+<p>This special costs $<%= @special.price %></p>
+
+
+<%= link_to "All Specials", specials_path %>
+<%= link_to "Edit this Special", edit_special_path(@special) %>

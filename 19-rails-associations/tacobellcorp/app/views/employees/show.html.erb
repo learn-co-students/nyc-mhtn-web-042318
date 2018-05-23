@@ -1,0 +1,5 @@
+<h1><%= @employee.name %></h1>
+<h3>Works at the <%= link_to @employee.franchise.city, @employee.franchise %> location.</h3>
+
+<%= link_to "All Employees", employees_path %>
+<%= link_to "Edit this Employee", edit_employee_path(@employee) %>

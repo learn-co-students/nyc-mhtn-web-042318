@@ -1,0 +1,8 @@
+<h1>Edit Franchise</h1>
+<%= link_to "Cancel", franchise_path(@franchise) %>
+
+<%= render "form" %>
+
+<%= form_tag franchise_path(@franchise), method: :delete do %>
+  <%= submit_tag "Delete Franchise" %>
+<% end %>

@@ -1,0 +1,11 @@
+<h1>ALL TACO BELL FRANCHISES</h1>
+<%= link_to "Employees", employees_path %>
+<%= link_to "Specials", specials_path %>
+
+<img src="https://stores.org/wp-content/uploads/2018/01/Taco-Bell-Doritos-Locos-Tacos.jpg" width=532px height=208px />
+<%= link_to "New Franchise", new_franchise_path %>
+<ul>
+  <% @franchises.each do |f| %>
+    <li><%= link_to f.city, f %></li>
+  <% end %>
+</ul>

@@ -1,0 +1,7 @@
+<%= render "errors/flash_errors" %>
+
+<%= form_for @franchise do |f| %>
+  <%= f.label :city %>
+  <%= f.text_field :city %>
+  <%= f.submit %>
+<% end %>

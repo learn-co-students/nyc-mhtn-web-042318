@@ -1,0 +1,8 @@
+<%= render "errors/flash_errors" %>
+
+<%= form_for @employee do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.collection_select :franchise_id, @franchises, :id, :city %>
+  <%= f.submit %>
+<% end %>

@@ -1,0 +1,13 @@
+<h1><%= @franchise.city %></h1>
+
+<% if @franchise.employees.length > 0 %>
+  <h3>These all-stars work here:</h3>
+  <ul>
+    <% @franchise.employees.each do |e| %>
+      <li><%= link_to e.name, e %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= link_to "All Franchises", franchises_path %>
+<%= link_to "Edit this Franchise", edit_franchise_path(@franchise) %>
