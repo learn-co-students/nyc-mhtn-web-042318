@@ -5,6 +5,11 @@
   <%= f.text_field :name %>
   <%= f.label :price %>
   <%= f.number_field :price %>
-  <%= f.collection_check_boxes :franchise_ids, @franchises, :id, :city %>
+  <%= f.collection_check_boxes :franchise_ids, @franchises, :id, :city do |cb| %>
+    <div>
+      <%= b.check_box %>
+      <%= b.label %>
+    </div>
+  <% end %>
   <%= f.submit %>
 <% end %>

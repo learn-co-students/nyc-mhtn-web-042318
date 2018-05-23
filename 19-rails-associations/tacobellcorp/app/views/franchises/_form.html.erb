@@ -3,6 +3,11 @@
 <%= form_for @franchise do |f| %>
   <%= f.label :city %>
   <%= f.text_field :city %>
-  <%= f.collection_check_boxes :special_ids, @specials, :id, :name %>
+  <%= f.collection_check_boxes :special_ids, @specials, :id, :name_and_price do |cb| %>
+    <div>
+      <%= cb.check_box %>
+      <%= cb.label %>
+    </div>
+  <% end %>
   <%= f.submit %>
 <% end %>
