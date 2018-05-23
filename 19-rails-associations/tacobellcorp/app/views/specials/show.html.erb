@@ -1,6 +1,14 @@
 <h1><%= @special.name %></h1>
 <p>This special costs $<%= @special.price %></p>
 
+<% if @special.franchises.length > 0 %>
+  <h3>GET IT HOT HERE AT THE FOLLOWING FRANCHISES:</h3>
+  <ul>
+    <% @special.franchises.each do |f| %>
+      <li><%= link_to f.city, f %></li>
+    <% end %>
+  </ul>
+<% end %>
 
 <%= link_to "All Specials", specials_path %>
 <%= link_to "Edit this Special", edit_special_path(@special) %>

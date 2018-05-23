@@ -3,5 +3,6 @@
 <%= form_for @franchise do |f| %>
   <%= f.label :city %>
   <%= f.text_field :city %>
+  <%= f.collection_check_boxes :special_ids, @specials, :id, :name %>
   <%= f.submit %>
 <% end %>

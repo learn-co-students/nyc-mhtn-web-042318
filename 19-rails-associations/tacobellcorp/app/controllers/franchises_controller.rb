@@ -1,5 +1,6 @@
 class FranchisesController < ApplicationController
   before_action :get_franchise, only: [:show, :edit, :update, :destroy]
+  before_action :get_specials, only: [:new, :edit]
 
   def index
     @franchises = Franchise.all
@@ -46,7 +47,11 @@ class FranchisesController < ApplicationController
     @franchise = Franchise.find(params[:id])
   end
 
+  def get_specials
+    @specials = Special.all.sort_by {|s| s.price }
+  end
+
   def franchise_params
-    params.require(:franchise).permit(:city)
+    params.require(:franchise).permit(:city, special_ids: [])
   end
 end

@@ -9,5 +9,14 @@
   </ul>
 <% end %>
 
+<% if @franchise.specials.length > 0 %>
+  <h3>You can get the following specials here:</h3>
+  <ul>
+    <% @franchise.specials.each do |s| %>
+      <li><%= link_to s.name, s %> | $<%= s.price %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= link_to "All Franchises", franchises_path %>
 <%= link_to "Edit this Franchise", edit_franchise_path(@franchise) %>
