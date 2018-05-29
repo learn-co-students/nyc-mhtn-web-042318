@@ -1,0 +1,23 @@
+<% if flash[:errors] %>
+  <ul>
+    <% flash[:errors].each do |e| %>
+      <li><%= e %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @user do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+  <%= f.collection_check_boxes :book_ids, @books, :id, :title do |book| %>
+    <div>
+      <%= book.label %>
+      <%= book.check_box %>
+    </div>
+  <% end %>
+  <%= f.submit "Change library" %>
+<% end %>
