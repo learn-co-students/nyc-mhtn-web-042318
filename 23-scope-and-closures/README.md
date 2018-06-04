@@ -5,7 +5,7 @@ Code associated to the `Scope and closures` lecture
 ## Objectives
 
 ### Variables scope
-* Refine key terms (scope resolution, lexical scope and execution context)
+* Redefine key terms (scope resolution, lexical scope and execution context)
 * Define scope resolution (buckets and marbles)
 * Lexical scope
 * JS scopes: global, functions and blocks (`{}` as a function body, block and object literal)
