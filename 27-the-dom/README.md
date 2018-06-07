@@ -1,4 +1,4 @@
-# The Document Object Mode
+# The Document Object Model
 
 Code associated to the Document Object Model lecture
 
