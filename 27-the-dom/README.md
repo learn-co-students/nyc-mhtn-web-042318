@@ -13,6 +13,8 @@ Code associated to the Document Object Model lecture
 * DOM Manipulation
   * Finding DOM Elements
   * Creating DOM elements
+    * From text to DOM
+    * From objs to DOM
   * Altering DOM elements
 * What is jQuery
 * **Build something** (rspectGram)
