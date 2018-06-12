@@ -1,0 +1,36 @@
+{
+  "ingredients": [
+    "chocolate invocation",
+    "chocolate definition",
+    "vanilla",
+    "scope",
+    "vanilla class",
+    "pure cookies",
+    "functional lemons",
+    "pecan this",
+    "walnut that",
+    "bananas in scope",
+    "bind chocolate",
+    "call vanilla",
+    "apply fudge"
+  ],
+  "icecreams": [
+    {
+      "id": 1,
+      "name": "Lexical chocolate",
+      "ingredients": [
+        "scope",
+        "chocolate definition"
+      ]
+    },
+    {
+      "name": "Scoped Vanilla",
+      "ingredients": [
+        "Lexical Scope",
+        "vanilla",
+        "sugar"
+      ],
+      "id": 2
+    }
+  ]
+}
