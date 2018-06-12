@@ -34,4 +34,4 @@ Resources:
 * [MDN Element](https://developer.mozilla.org/en-US/docs/Web/API/Element)
 * [MDN NodeList reference](https://developer.mozilla.org/en-US/docs/Web/API/NodeList)
 * [MDN HTMLCollection reference](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCollection)
-* [CSS Selectors Cheatsheet](https://gist.github.com/smutnyleszek/809a69dd05e1d5f12d01)
+* [CSS Selectors Cheatsheet](https://guide.freecodecamp.org/css/tutorials/css-selectors-cheat-sheet/)
