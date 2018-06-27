@@ -6,7 +6,10 @@ class Cupbake extends Component {
     return (
       <div className="border column">
         <h2>Our Cupbake</h2>
-        <Cupcake name={this.props.cupbake.cupcake.name} ingredients={this.props.cupbake.cupcake.ingredients} />
+        <Cupcake
+          name={this.props.cupbake.cupcake.name}
+          ingredients={this.props.cupbake.cupcake.ingredients}
+        />
         Toppings
         Filling
       </div>

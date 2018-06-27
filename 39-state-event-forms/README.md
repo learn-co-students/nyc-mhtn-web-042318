@@ -1,31 +1,34 @@
-State, Events, and Forms
-========================
+State, Events, and Forms && Lifting State
+=========================================
 
 ## Objectives
 
-- Instantiate state in and out of the constructor
-- Trigger rerenders by calling `setState`
-- Use event handlers to manipulate the DOM by changing values in state
-- Understand and draw a Component Hierarchy
-- Write fully controlled forms
-- Differentiate between presentational(dumb) and container(smart) components
-- Get familiarity with component hierarchy and the flow of information
+- [x] Instantiate state in and out of the constructor
+- [x] Trigger rerenders by calling `setState`
+- [x] Use event handlers to manipulate the DOM by changing values in state
+- [x] Understand and draw a Component Hierarchy
+- [x] Write fully controlled forms
+- [ ] Differentiate between presentational(dumb) and container(smart) components
+- [x] Get familiarity with component hierarchy and the flow of information
+- [x] Lifting state
 
 ### Outline
 
-- [ ] State / setState
+- [x] State / setState
   - [ ] More on Imperative vs Declarative
 - [ ] Event Handlers
-  - [ ] Synthetic Events - Why?
-  - [ ] Relation to DOM events
-  - [ ] Event Pooling?
-  - [ ] `event` object
-  - [ ] change state with an event handler
-  - [ ] binding
-- [ ] Flow of Information in React
-  - [ ] Intro to the Component Hierarchy
-- [ ] Forms
-  - [ ] Controlled Forms  
+  - [x] Synthetic Events - Why?
+  - [x] Relation to DOM events
+  - [x] Event Pooling?
+  - [x] `event` object
+  - [x] change state with an event handler
+  - [x] binding
+- [x] Flow of Information in React
+  - [x] Intro to the Component Hierarchy
+- [x] Forms
+  - [x] Controlled Forms
+- [x] Lifting State
+  - [ ] Source of Truth
 
 ## Lecture Notes
 
@@ -47,7 +50,7 @@ Build something out to see how this works.
 ### Event Handlers
 
 - React wraps all events and tries its best to abstract them into a single API that _should_ act the same across browsers.
-- This is one reason why React has what they call _Synthetic Events_.
+- This is one reason why React has what they call [_Synthetic Events_](https://reactjs.org/docs/handling-events.html).
 - Another reason is so the same API for all event handlers can be used for other platforms. For example: Instead of `react-dom`, we use `react-native`.
 
 **The `event` Object**
@@ -187,6 +190,30 @@ handleChange = (event) => {
 </form>
 ```
 
+### Lifting State
+
+[Lifting State Up](https://reactjs.org/docs/lifting-state-up.html)
+
+> Often, several components need to reflect the same changing data. We recommend lifting the shared state up to their closest common ancestor.
+
+If two sibling components need access to the same `state`, you will want to place the shared `state` in a parent container. Then you can pass down that `state` as well as any functions that need to modify the state as props to the two sibling components that need to display and/or change that data.
+
+**Metaphor Time!**
+
+**DISCLAIMER:** _This metaphor may confuse you more, so read only if you dare!!_
+
+Think of your React app as a hydroelectric dam made of legos. Your legos are React components. `state` is like the energy / water that can be generated and used by the legos (aka: components). That energy comes in the form of `props`.
+
+Anytime a component needs energy, it can either be from itself (poke a hole in that lego) === the component has `state`.
+
+OR
+
+If multiple components need that energy, you poke a hole in some higher up lego (a container component holding the other components) so it can spill out water (aka: `state`) and give it to its children via `props`.
+
 ## Extras
 
-[React Events in Depth](https://www.youtube.com/watch?v=dRo_egw7tBc)
+- [React Events in Depth](https://www.youtube.com/watch?v=dRo_egw7tBc)
+- [Function Binding](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind)
+- [Class Field Declarations](https://github.com/tc39/proposal-class-fields)
+- [event.target vs event.currentTarget](https://github.com/facebook/react/issues/5733)
+- [JavaScript Event Delegation, and event.target vs. event.currentTarget](https://medium.com/@florenceliang/javascript-event-delegation-and-event-target-vs-event-currenttarget-c9680c3a46d1)
