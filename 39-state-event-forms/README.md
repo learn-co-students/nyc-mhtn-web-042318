@@ -14,6 +14,7 @@ State, Events, and Forms
 ### Outline
 
 - [ ] State / setState
+  - [ ] More on Imperative vs Declarative
 - [ ] Event Handlers
   - [ ] Synthetic Events - Why?
   - [ ] Relation to DOM events
