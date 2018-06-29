@@ -8,6 +8,7 @@ export default class Watch extends React.Component {
   }
 
   componentWillUnmount() {
+    console.log('componentWillUnmount');
     if (this.state.clockId) {
       clearInterval(this.state.clockId);
     }
@@ -15,6 +16,7 @@ export default class Watch extends React.Component {
 
   startClock = () => {
     return setInterval(() => {
+      console.log('clock is running')
       this.setState((prevState, props) => {
         return { milliseconds: prevState.milliseconds + this.props.interval };
       });
