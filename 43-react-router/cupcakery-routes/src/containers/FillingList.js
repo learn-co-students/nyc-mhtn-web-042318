@@ -31,7 +31,10 @@ class FillingList extends React.Component {
             />
             <button
               id={filling.id}
-              onClick={(event) => { this.props.handleSelect(filling.id) }}
+              onClick={(event) => {
+                this.props.handleSelect(filling.id);
+                this.props.history.push("/toppings");
+              }}
             >
               Select {filling.name}
             </button>

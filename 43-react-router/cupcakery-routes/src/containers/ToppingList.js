@@ -31,7 +31,10 @@ class ToppingList extends React.Component {
             />
             <button
               id={topping.id}
-              onClick={(event) => { this.props.handleSelect(topping.id) }}
+              onClick={(event) => {
+                this.props.handleSelect(topping.id);
+                // this.props.history.push("/cupbake");
+              }}
             >
               Select {topping.name}
             </button>
@@ -52,6 +55,14 @@ class ToppingList extends React.Component {
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
         />
+
+        <button
+          onClick={(event) => {
+            this.props.history.push("/cupbake");
+          }}
+        >
+          Finished
+        </button>
 
         {this.renderList()}
       </div>

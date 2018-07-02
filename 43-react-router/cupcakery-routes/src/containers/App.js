@@ -5,6 +5,7 @@ import FillingList from './FillingList';
 import ToppingList from './ToppingList';
 import Cupbake from '../components/Cupbake';
 import UUID from 'uuid';
+import { Link, Route, Switch, Redirect } from 'react-router-dom'
 
 const cupcakes = [
   {id: UUID(), name: 'Vanilla', ingredients: ['vanilla extract', 'eggs', 'flour', 'baking soda']},
@@ -77,24 +78,72 @@ class App extends Component {
     return (
       <div className="container">
         <div className="nav">
-          { /* Code will go here */ }
+          <Link to="/cupcakes">Cupcakes</Link>
+          <Link to="/fillings">Fillings</Link>
+          <Link to="/toppings">Toppings</Link>
         </div>
 
         <div className="content">
-          <CupcakeList
-            cupcakes={this.state.cupcakes}
-            handleSelect={this.selectCupcake}
-          />
 
-          <FillingList
-            fillings={this.state.fillings}
-            handleSelect={this.selectFilling}
-          />
+          {/*
+          <Route path="/" component={() => {
+            return (<p>Make some cupcakes! Explain it?</p>)
+          }} />
+          */}
 
-          <ToppingList
-            toppings={this.state.toppings}
-            handleSelect={this.selectTopping}
-          />
+          <Switch>
+
+            <Route exact path="/cupcakes" component={(props) => {
+              return (
+                <CupcakeList
+                   cupcakes={this.state.cupcakes}
+                   handleSelect={this.selectCupcake}
+                   { ...props }
+                />
+              )
+            }}/>
+
+          <Route exact path="/fillings" component={(props) => {
+              return (
+                <FillingList
+                  fillings={this.state.fillings}
+                  handleSelect={this.selectFilling}
+                  { ...props }
+                />
+              )
+            }}/>
+
+          <Route exact path="/toppings/abunchofthings" component={() => {
+              return (
+                <React.Fragment>
+                  <h2>Another toppings</h2>
+                  <ToppingList
+                    toppings={this.state.toppings}
+                    handleSelect={this.selectTopping}
+                  />
+                </React.Fragment>
+              )
+            }}/>
+
+          <Route path="/toppings" component={(props) => {
+              return (
+                <ToppingList
+                  toppings={this.state.toppings}
+                  handleSelect={this.selectTopping}
+                  { ...props }
+                />
+              )
+            }}/>
+
+          <Route path="/cupbake" component={(props) => {
+                return (
+                  <Cupbake cupbake={this.state.cupbake} />
+                )
+              }}/>
+
+          </Switch>
+
+          <Redirect to="/" />
 
           <Cupbake cupbake={this.state.cupbake} />
         </div>

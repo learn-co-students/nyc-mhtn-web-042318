@@ -32,7 +32,10 @@ class CupcakeList extends React.Component {
             />
             <button
               id={cupcake.id}
-              onClick={(event) => { this.props.handleSelect(cupcake.id) }}
+              onClick={(event) => {
+                this.props.handleSelect(cupcake.id);
+                this.props.history.push("/fillings");
+              }}
             >
               Select {cupcake.name}
             </button>
@@ -42,6 +45,7 @@ class CupcakeList extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div className="border column">
         <h2>Cupcake List</h2>
