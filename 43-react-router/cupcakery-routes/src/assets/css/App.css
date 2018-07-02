@@ -1,0 +1,31 @@
+.content {
+  text-align: center;
+  display: flex;
+}
+
+.border {
+  border: 1px dashed blue;
+  margin: 10px;
+}
+
+.column {
+  flex: 1;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav {
+  display: flex;
+}
+
+.nav > a {
+  flex: 1;
+  padding: 5px;
+  margin: 0 10px;
+  text-align: center;
+  border: 1px solid blue;
+  background-color: #CACFD2;
+}
