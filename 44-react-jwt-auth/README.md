@@ -75,72 +75,64 @@ status: :unprocessable_entity
 status: :unauthorized
 
 # before_action macros also end up being helpful:
-before_action :require_login, only: [:users_snacks]
-before_action :require_authorization, only: [:users_snacks]
+before_action :requires_login, only: [:index, :show, :users_snacks]
+before_action :is_admin, only: [:index]
 
 # Our eventual ApplicationController:
 class ApplicationController < ActionController::API
 
-  def require_login
-    if (!valid_token?)
-      render json: { go_away: true }, status: :unauthorized
-    end
+  def secret_key
+    ENV['SECRET_KEY']
   end
 
-  def require_authorization
-    @user = User.find_by(id: params[:user_id])
-
-    if (!authorized?(@user))
-      render json: { go_away: true }, status: :unauthorized
-    end
+  def authorization_token
+    request.headers["Authorization"]
   end
 
-  def token_json(user)
-    {
-      username: user.username,
-      user_id: user.id,
-      token: generate_token(user)
-    }
-  end
-
-  def generate_token(user)
-    user_id = user.id
-    JWT.encode({ "user_id": user.id }, jwt_password, 'HS256')
-  end
-
-  def jwt_password
-    ENV["JWT_PASSWORD"]
-  end
-
-
-  def try_decode_token
-    token = request.headers["Authorization"]
-
+  def decoded_token
     begin
-      decoded = JWT.decode(token, jwt_password, true, { algorithm: 'HS256' })
-    rescue JWT::VerificationError
-      return nil
+      JWT.decode authorization_token(), secret_key(), true, { algorithm: 'HS256' }
+    rescue JWT::VerificationError, JWT::DecodeError
+      nil
     end
-
-    decoded
-  end
-
-  def current_user_id
-    decoded = try_decode_token
-
-    unless decoded && decoded[0] && decoded[0]["user_id"]
-      return nil
-    end
-
-    decoded[0]["user_id"]
   end
 
   def valid_token?
-    !!try_decode_token
+    !!decoded_token
   end
 
-  def authorized?(user)
-    current_user_id == user.id
+  def requires_login
+    if !valid_token?
+      render json: {
+        message: 'You wrong!'
+      }, status: :unauthorized
+    end
+  end
+
+  # Poor example of authorization:
+  def is_admin
+    decoded_token[0]["id"] < 10
+  end
+
+  # def authenticate(data)
+  #   begin
+  #     decoded_token()
+  #     render json: data
+  #   rescue JWT::DecodeError
+  #     puts "I got here"
+  #
+  #     render json: {
+  #       message: 'You wrong!'
+  #     }, status: :unauthorized
+  #   end
+  # end
+
+  def payload(name, id)
+    { name: name, id: id }
+  end
+
+  def get_token(payload)
+    JWT.encode payload, secret_key(), 'HS256'
   end
 
 end

@@ -16,15 +16,25 @@ class MySnacks extends Component {
       {
         headers: {
           "Content-Type": "application/json",
+          "Authorization": localStorage.getItem('token')
         }
       }
     )
-    .then(res => res.json())
+    .then(res => {
+      console.log(res);
+      return res.json()
+    })
     .then(json => {
       this.setState({
         snacks: json,
       });
-    });
+    })
+    .catch(err => {
+      console.log('catch');
+      this.setState({
+        snacks: [],
+      });
+    })
   }
 
   render() {

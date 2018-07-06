@@ -14,9 +14,28 @@ class LoginForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    // console.log(this.state)
+
+    // WE NEED A HEADER!!
+    fetch(`http://localhost:3000/sessions/`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": 'application/json'
+      },
+      body: JSON.stringify(this.state)
+    })
+      .then(res => res.json())
+      .then(json => {
+        localStorage.setItem('token', json.token);
+        this.props.history.push("/");
+      })
+      // .then(() => {
+      //   this.setState({ ...this.state });
+      // })
   }
 
   render() {
+    console.log('i rendered');
     return (
       <div className="login">
         <form onSubmit={this.handleSubmit}>

@@ -14,6 +14,20 @@ class RegistrationForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+
+    fetch(`http://localhost:3000/users/`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": 'application/json'
+      },
+      body: JSON.stringify(this.state)
+    })
+      .then(res => res.json())
+      .then(json => {
+        console.log(json);
+        localStorage.setItem('token', json.token);
+        this.props.history.push("/");
+      })
   }
 
   render() {

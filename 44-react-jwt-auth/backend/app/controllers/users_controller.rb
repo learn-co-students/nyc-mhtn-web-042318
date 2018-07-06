@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :requires_login, only: [:index, :show, :users_snacks]
+  before_action :is_admin, only: [:index]
 
   def index
     render json: User.all
@@ -8,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     render json: @user
   end
-  
+
   def create
     @user = User.new
 
@@ -18,7 +20,8 @@ class UsersController < ApplicationController
     if (@user.save)
       render json: {
         username: @user.username,
-        id: @user.id
+        id: @user.id,
+        token: get_token(payload(@user.username, @user.id))
       }
     else
       render json: {
