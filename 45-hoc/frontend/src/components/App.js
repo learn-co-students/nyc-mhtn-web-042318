@@ -7,22 +7,28 @@ import LoginForm from './LoginForm';
 import Snacks from './Snacks';
 import MySnacks from './MySnacks';
 import Adapter from './Adapter';
+import withAuth from '../hocs/withAuth';
 
 class App extends Component {
   render() {
+    const AuthedRegistrationForm = withAuth(RegistrationForm, "/");
+    const AuthedLoginForm = withAuth(LoginForm, "/my-snacks");
+
     return (
         <div className="App">
           <NavBar />
 
           <Route exact path="/" component={Welcome} />
-          { Adapter.isLoggedIn() ?
+          <Route exact path="/register" component={(props) => <AuthedRegistrationForm {...props} />} />
+          <Route exact path="/login" component={(props) => <AuthedLoginForm {...props} />} />
+          {/* Adapter.isLoggedIn() ?
               <Redirect to="/" />
             :
               <Fragment>
-                <Route exact path="/register" component={(props) => <RegistrationForm {...props} />} />
-                <Route exact path="/login" component={(props) => <LoginForm {...props} />} />
+                <Route exact path="/register" component={(props) => <AuthedRegistrationForm {...props} />} />
+                <Route exact path="/login" component={(props) => <AuthedLoginForm {...props} />} />
               </Fragment>
-          }
+          */}
           {/* !Adapter.isLoggedIn() && path !== "/login" */}
           <Route exact path="/snacks" component={Snacks} />
           <Route exact path="/my-snacks" component={MySnacks} />

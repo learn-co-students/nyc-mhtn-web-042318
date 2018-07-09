@@ -22,6 +22,8 @@ React Higher Order Component (HOC)
 
 ### withRouter (LogoutButton)
 
+[`withRouter` documentation](https://reacttraining.com/react-router/web/api/withRouter)
+
 ```javascript
 import React from 'react';
 import { withRouter } from 'react-router'
@@ -43,6 +45,14 @@ export default withRouter(LogoutButton);
 ```
 
 ### withAuth
+
+What we wrote in class works.
+- It protects our route from directly being accessed.
+- If you try to access `/login` directly, it will redirect you correctly.
+- However, since `LoginForm` pushes after logging in, we never actually hit that `Redirect`.
+- I was thinking about the functionality being abstracted in the wrong way.
+
+The below is functionally equivalent. It's what the previous class came up with.
 
 ```javascript
 import React from 'react';
