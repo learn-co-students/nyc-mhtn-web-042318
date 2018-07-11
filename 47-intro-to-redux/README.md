@@ -9,6 +9,14 @@ Intro to Redux
 - [ ] Prove it to you.
 - [ ] How do I learn Redux?
 
+
+Pain Points
+- passing state
+- routing
+- having objects that need to be mapped to render things
+- console logging (when and where)
+- debuggers are liars
+
 ## Outline
 
 - [ ] Recap what we know about React
