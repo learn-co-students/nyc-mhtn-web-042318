@@ -131,6 +131,8 @@ store.dispatch = addLoggingToDispatch(store);
 
 ## Resources
 
+[Slides from the lecture!](https://docs.google.com/presentation/d/1c1Ycvl3-3eMr3Eq-uAn4yU7HHjGuo_eU0PLevAEHUIg/edit?usp=sharing)
+
 ### How I learned Redux
 
 A lot of the things listed on the official website: [Learning Resources](https://redux.js.org/introduction/learning-resources). Specifically, these really helped me:
