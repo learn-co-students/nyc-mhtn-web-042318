@@ -36,9 +36,15 @@ const reducer = (state = initialState, action, id) => {
     case "CLICK_EVENT":
       const { id } = action.payload
       console.log('id:payload', id);
-      return { ...state, alive: false, cat: "meow", counter: state.counter + 1 }
+      return { ...state, alive: !state.alive, cat: "meow", counter: state.counter + 1 }
     case "STOP_DANCING":
       return { ...state, dancing: false }
+    case "START_DANCING":
+      return { ...state, dancing: true }
+    case "TOGGLE_DANCING":
+      return { ...state, dancing: !state.dancing }
+    case "SET_COUNTER":
+      return { ...state, counter: action.payload.value }
     default:
       return state;
   }
@@ -49,6 +55,19 @@ const reducer = (state = initialState, action, id) => {
 console.log('before createStore');
 // store receives an action, then reduces
 const store = createStore(reducer);
+
+const addLoggingToDispatch = (store) => {
+  const rawDispatch = store.dispatch;
+  return (action) => {
+    console.group("SPECIAL")
+    console.log('%c before', 'color: blue', store.getState());
+    const returnValue = rawDispatch(action);
+    console.log('%c after', 'color: red', store.getState());
+    console.groupEnd()
+    return returnValue;
+  }
+}
+store.dispatch = addLoggingToDispatch(store);
 
 console.log(store);
 console.log('after createStore', store.getState());

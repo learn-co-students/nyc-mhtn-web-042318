@@ -9,14 +9,6 @@ Intro to Redux
 - [ ] Prove it to you.
 - [ ] How do I learn Redux?
 
-
-Pain Points
-- passing state
-- routing
-- having objects that need to be mapped to render things
-- console logging (when and where)
-- debuggers are liars
-
 ## Outline
 
 - [ ] Recap what we know about React
@@ -69,6 +61,16 @@ Redux **will** test your JavaScript knowledge to the **MAX**!!!
 
 **Pain Points**
 
+_Our Pain Points_
+
+- passing state
+- routing
+- having objects that need to be mapped to render things
+- console logging (when and where)
+- debuggers are liars
+
+_Common Pain Points_ (as said by others)
+
 - When state becomes too big and shared, there's too much lifting & too much refactoring.
 
 Much like what _Fun Fun Functions_ said about Composition over Inheritance:
@@ -104,19 +106,63 @@ Catchy phrase I learned from another instructor that might help you understand r
 
 > Data down actions up that is how we like to redux.
 
+### Redux Extras
+
+#### Adding Custom Logging to Dispatch
+
+[Watch this video](https://egghead.io/lessons/javascript-redux-wrapping-dispatch-to-log-actions) for an in-depth explanation and more interesting example built out by Dan Abramov.
+
+```javascript
+// In index.js after you createStore but before passing to Provider
+
+const addLoggingToDispatch = (store) => {
+  const rawDispatch = store.dispatch;
+  return (action) => {
+    console.group("DISPATCH");
+    console.log('%c state before dispatch', 'color: red', store.getState());
+    const returnValue = rawDispatch(action);
+    console.log('%c state after dispatch', 'color: blue', store.getState());
+    console.groupEnd();
+    return returnValue;
+  }
+}
+store.dispatch = addLoggingToDispatch(store);
+```
+
 ## Resources
 
-Egghead courses by Dan Abramov:
+### How I learned Redux
+
+A lot of the things listed on the official website: [Learning Resources](https://redux.js.org/introduction/learning-resources). Specifically, these really helped me:
+
+_Egghead courses by Dan Abramov:_
 
 - [Getting Started with Redux](https://egghead.io/courses/getting-started-with-redux)
+  - [Open Source Compilation of Course Notes](https://github.com/tayiorbeii/egghead.io_redux_course_notes)
 - [Building React Applications with Idiomatic Redux](https://egghead.io/courses/building-react-applications-with-idiomatic-redux)
-- [Pure vs Impure Functions](https://egghead.io/lessons/react-redux-pure-and-impure-functions)
 
-Redux docs:
+_Documentation, specifically these pages:_
 
-- [Redux](https://redux.js.org/)
+- [Redux Docs](https://redux.js.org/)
 - [Basics: Usage with React](https://redux.js.org/basics/usage-with-react)
-- [FAQ: Code Structure](https://redux.js.org/faq/code-structure)
 - [FAQ: Do I have to put all my state into Redux? Should I ever use React's setState()?](https://redux.js.org/faq/organizing-state#do-i-have-to-put-all-my-state-into-redux-should-i-ever-use-reacts-setstate)
+- [FAQ: How should I split my logic between reducers and action creators? Where should my “business logic” go?](https://redux.js.org/faq/code-structure#how-should-i-split-my-logic-between-reducers-and-action-creators-where-should-my-business-logic-go)
+  - [Github issue discussion on this topic.](https://github.com/reduxjs/redux/issues/1165)
+
+### How I got better at Redux
+
+More courses on Egghead:
+
+- [Pure vs Impure Functions](https://egghead.io/lessons/react-redux-pure-and-impure-functions)
+- [Adding custom logging to Dispatch](https://egghead.io/lessons/javascript-redux-wrapping-dispatch-to-log-actions)
+
+More Redux docs:
+
+- [Example Projects (always good to learn from other code)](https://redux.js.org/introduction/examples)
+- [FAQ: Code Structure](https://redux.js.org/faq/code-structure)
 - [Recipes: Using Object Spread Operator](https://redux.js.org/recipes/using-object-spread-operator)
 - [Recipes: Reducing Boilerplate](https://redux.js.org/recipes/reducing-boilerplate)
+
+And just asking questions to understand things better:
+
+- [Is store.dispatch in Redux synchronous or asynchronous](https://stackoverflow.com/questions/43276291/is-store-dispatch-in-redux-synchronous-or-asynchronous)
